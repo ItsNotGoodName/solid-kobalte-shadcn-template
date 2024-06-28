@@ -1,54 +1,240 @@
-import solidLogo from './assets/solid.svg'
-import { For, ParentProps, Show, createSignal, onCleanup } from 'solid-js'
-import { Button } from './ui/Button'
-import { provideTheme, toggleTheme } from './ui/theme'
-import { ThemeIcon } from './ui/ThemeIcon'
-import { AccordionContent, AccordionItem, AccordionRoot, AccordionTrigger } from './ui/Accordion'
-import { RiEditorHashtag, RiMapRocketLine, RiMediaVolumeMuteLine, RiMediaVolumeUpLine, RiSystemAddLine, RiSystemAlertLine } from 'solid-icons/ri'
-import { AlertRoot, AlertTitle, AlertDescription } from './ui/Alert'
-import { AlertDialogRoot, AlertDialogTrigger, AlertDialogModal, AlertDialogHeader, AlertDialogTitle, AlertDialogDescription, AlertDialogFooter, AlertDialogCancel, AlertDialogAction } from './ui/AlertDialog'
-import { AvatarRoot, AvatarImage, AvatarFallback } from './ui/Avatar'
-import { Badge } from './ui/Badge'
-import { CardRoot, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from './ui/Card'
-import { CheckboxRoot, CheckboxControl, CheckboxLabel, CheckboxDescription, CheckboxErrorMessage } from './ui/Checkbox'
-import { ComboboxRoot, ComboboxItem, ComboboxItemLabel, ComboboxLabel, ComboboxControl, ComboboxTrigger, ComboboxIcon, ComboboxState, ComboboxReset, ComboboxDescription, ComboboxErrorMessage, ComboboxContent, ComboboxInput, ComboboxListbox } from './ui/Combobox'
-import { DialogRoot, DialogTrigger, DialogPortal, DialogOverlay, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogOverflow, DialogFooter } from './ui/Dialog'
-import { DropdownMenuRoot, DropdownMenuTrigger, DropdownMenuPortal, DropdownMenuContent, DropdownMenuItem, DropdownMenuShortcut, DropdownMenuSub, DropdownMenuSubTrigger, DropdownMenuSubTriggerIndicator, DropdownMenuSubContent, DropdownMenuSeparator, DropdownMenuCheckboxItem, DropdownMenuCheckboxItemIndicator, DropdownMenuGroup, DropdownMenuGroupLabel, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuRadioItemIndicator, DropdownMenuArrow } from './ui/DropdownMenu'
-import { HoverCardRoot, HoverCardTrigger, HoverCardContent, HoverCardArrow } from './ui/HoverCard'
-import { Label } from './ui/Label'
-import { MenubarRoot, MenubarMenu, MenubarTrigger, MenubarContent, MenubarItem, MenubarShortcut, MenubarSub, MenubarSubTrigger, MenubarSubContent, MenubarSeparator, MenubarCheckboxItem, MenubarGroup, MenubarGroupLabel, MenubarRadioGroup, MenubarRadioItem } from './ui/Menubar'
-import { PaginationRoot, PaginationItem, PaginationLink, PaginationEllipsis, PaginationPrevious, PaginationItems, PaginationNext } from './ui/Pagination'
-import { ProgressRoot, ProgressLabel, ProgressValueLabel, ProgressTrack, ProgressFill } from './ui/Progress'
-import { SelectRoot, SelectItem, SelectLabel, SelectTrigger, SelectValue, SelectDescription, SelectErrorMessage, SelectPortal, SelectContent, SelectListbox } from './ui/Select'
-import { Seperator } from './ui/Seperator'
-import { SheetRoot, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetOverflow, SheetFooter, SheetCloseButton } from './ui/Sheet'
-import { Skeleton } from './ui/Skeleton'
-import { SwitchRoot, SwitchControl, SwitchLabel, SwitchDescription, SwitchErrorMessage } from './ui/Switch'
-import { TableRoot, TableCaption, TableHeader, TableRow, TableHead, TableBody, TableCell } from './ui/Table'
-import { TabsRoot, TabsList, TabsTrigger, TabsContent } from './ui/Tabs'
-import { TextFieldRoot, TextFieldLabel, TextFieldInput, TextFieldDescription, TextFieldErrorMessage, TextFieldTextArea } from './ui/TextField'
-import { ToastCloseButton, ToastContent, ToastDescription, ToastList, ToastProgressFill, ToastProgressTrack, ToastRegion, ToastTitle, toast } from './ui/Toast'
-import { Portal } from 'solid-js/web'
-import { Toggle } from './ui/Toggle'
-import { TooltipArrow, TooltipContent, TooltipRoot, TooltipTrigger } from './ui/Tooltip'
+import solidLogo from "./assets/solid.svg";
+import { For, ParentProps, Show, createSignal, onCleanup } from "solid-js";
+import { Button } from "./ui/Button";
+import { provideTheme, toggleTheme } from "./ui/theme";
+import { ThemeIcon } from "./ui/ThemeIcon";
+import {
+  AccordionContent,
+  AccordionItem,
+  AccordionRoot,
+  AccordionTrigger,
+} from "./ui/Accordion";
+import {
+  RiEditorHashtag,
+  RiMapRocketLine,
+  RiMediaVolumeMuteLine,
+  RiMediaVolumeUpLine,
+  RiSystemAddLine,
+  RiSystemAlertLine,
+} from "solid-icons/ri";
+import { AlertRoot, AlertTitle, AlertDescription } from "./ui/Alert";
+import {
+  AlertDialogRoot,
+  AlertDialogTrigger,
+  AlertDialogModal,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogCancel,
+  AlertDialogAction,
+} from "./ui/AlertDialog";
+import { AvatarRoot, AvatarImage, AvatarFallback } from "./ui/Avatar";
+import { Badge } from "./ui/Badge";
+import {
+  CardRoot,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter,
+} from "./ui/Card";
+import {
+  CheckboxRoot,
+  CheckboxControl,
+  CheckboxLabel,
+  CheckboxDescription,
+  CheckboxErrorMessage,
+} from "./ui/Checkbox";
+import {
+  ComboboxRoot,
+  ComboboxItem,
+  ComboboxItemLabel,
+  ComboboxLabel,
+  ComboboxControl,
+  ComboboxTrigger,
+  ComboboxIcon,
+  ComboboxState,
+  ComboboxReset,
+  ComboboxDescription,
+  ComboboxErrorMessage,
+  ComboboxContent,
+  ComboboxInput,
+  ComboboxListbox,
+} from "./ui/Combobox";
+import {
+  DialogRoot,
+  DialogTrigger,
+  DialogPortal,
+  DialogOverlay,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogOverflow,
+  DialogFooter,
+} from "./ui/Dialog";
+import {
+  DropdownMenuRoot,
+  DropdownMenuTrigger,
+  DropdownMenuPortal,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuShortcut,
+  DropdownMenuSub,
+  DropdownMenuSubTrigger,
+  DropdownMenuSubTriggerIndicator,
+  DropdownMenuSubContent,
+  DropdownMenuSeparator,
+  DropdownMenuCheckboxItem,
+  DropdownMenuCheckboxItemIndicator,
+  DropdownMenuGroup,
+  DropdownMenuGroupLabel,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuRadioItemIndicator,
+  DropdownMenuArrow,
+} from "./ui/DropdownMenu";
+import {
+  HoverCardRoot,
+  HoverCardTrigger,
+  HoverCardContent,
+  HoverCardArrow,
+} from "./ui/HoverCard";
+import { Label } from "./ui/Label";
+import {
+  MenubarRoot,
+  MenubarMenu,
+  MenubarTrigger,
+  MenubarContent,
+  MenubarItem,
+  MenubarShortcut,
+  MenubarSub,
+  MenubarSubTrigger,
+  MenubarSubContent,
+  MenubarSeparator,
+  MenubarCheckboxItem,
+  MenubarGroup,
+  MenubarGroupLabel,
+  MenubarRadioGroup,
+  MenubarRadioItem,
+} from "./ui/Menubar";
+import {
+  PaginationRoot,
+  PaginationItem,
+  PaginationLink,
+  PaginationEllipsis,
+  PaginationPrevious,
+  PaginationItems,
+  PaginationNext,
+} from "./ui/Pagination";
+import {
+  ProgressRoot,
+  ProgressLabel,
+  ProgressValueLabel,
+  ProgressTrack,
+  ProgressFill,
+} from "./ui/Progress";
+import {
+  SelectRoot,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+  SelectDescription,
+  SelectErrorMessage,
+  SelectPortal,
+  SelectContent,
+  SelectListbox,
+} from "./ui/Select";
+import { Seperator } from "./ui/Seperator";
+import {
+  SheetRoot,
+  SheetTrigger,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetDescription,
+  SheetOverflow,
+  SheetFooter,
+  SheetCloseButton,
+} from "./ui/Sheet";
+import { Skeleton } from "./ui/Skeleton";
+import {
+  SwitchRoot,
+  SwitchControl,
+  SwitchLabel,
+  SwitchDescription,
+  SwitchErrorMessage,
+} from "./ui/Switch";
+import {
+  TableRoot,
+  TableCaption,
+  TableHeader,
+  TableRow,
+  TableHead,
+  TableBody,
+  TableCell,
+} from "./ui/Table";
+import { TabsRoot, TabsList, TabsTrigger, TabsContent } from "./ui/Tabs";
+import {
+  TextFieldRoot,
+  TextFieldLabel,
+  TextFieldInput,
+  TextFieldDescription,
+  TextFieldErrorMessage,
+  TextFieldTextArea,
+} from "./ui/TextField";
+import {
+  ToastCloseButton,
+  ToastContent,
+  ToastDescription,
+  ToastList,
+  ToastProgressFill,
+  ToastProgressTrack,
+  ToastRegion,
+  ToastTitle,
+  toast,
+} from "./ui/Toast";
+import { Portal } from "solid-js/web";
+import { Toggle } from "./ui/Toggle";
+import {
+  TooltipArrow,
+  TooltipContent,
+  TooltipRoot,
+  TooltipTrigger,
+} from "./ui/Tooltip";
 
 function App() {
-  provideTheme()
+  provideTheme();
 
-  const [validationState, setValidationState] = createSignal<"valid" | "invalid">("valid")
-  const toggleValidationState = () => validationState() == "valid" ? setValidationState("invalid") : setValidationState("valid")
+  const [validationState, setValidationState] = createSignal<
+    "valid" | "invalid"
+  >("valid");
+  const toggleValidationState = () =>
+    validationState() == "valid"
+      ? setValidationState("invalid")
+      : setValidationState("valid");
 
-  const [progress, setProgress] = createSignal(0)
-  const timer = setInterval(() => setProgress((prev) => (prev + 10) % 100), 200)
-  onCleanup(() => clearInterval(timer))
+  const [progress, setProgress] = createSignal(0);
+  const timer = setInterval(
+    () => setProgress((prev) => (prev + 10) % 100),
+    200,
+  );
+  onCleanup(() => clearInterval(timer));
 
   return (
     <div class="flex flex-col gap-4 p-4">
-      <div class='flex gap-2'>
+      <div class="flex gap-2">
         <Button size="icon" onClick={toggleTheme}>
-          <ThemeIcon class='size-6' />
+          <ThemeIcon class="size-6" />
         </Button>
-        <Button onClick={toggleValidationState} variant={validationState() == "valid" ? "outline" : "destructive"}>Toggle Validation State</Button>
+        <Button
+          onClick={toggleValidationState}
+          variant={validationState() == "valid" ? "outline" : "destructive"}
+        >
+          Toggle Validation State
+        </Button>
       </div>
 
       <Section>
@@ -73,14 +259,14 @@ function App() {
 
       <Section>
         <SectionTitle id="alert">Alert</SectionTitle>
-        <SectionContent class='flex flex-col gap-2'>
+        <SectionContent class="flex flex-col gap-2">
           <AlertRoot>
-            <RiMapRocketLine class="w-4 h-4" />
+            <RiMapRocketLine class="h-4 w-4" />
             <AlertTitle>Alert Title</AlertTitle>
             <AlertDescription>Alert Description</AlertDescription>
           </AlertRoot>
           <AlertRoot variant="destructive">
-            <RiSystemAlertLine class="w-4 h-4" />
+            <RiSystemAlertLine class="h-4 w-4" />
             <AlertTitle>Alert Title</AlertTitle>
             <AlertDescription>Alert Description</AlertDescription>
           </AlertRoot>
@@ -91,15 +277,13 @@ function App() {
         <SectionTitle id="alert-dialog">Alert Dialog</SectionTitle>
         <SectionContent>
           <AlertDialogRoot>
-            <AlertDialogTrigger as={Button}>
-              Alert Dialog
-            </AlertDialogTrigger>
+            <AlertDialogTrigger as={Button}>Alert Dialog</AlertDialogTrigger>
             <AlertDialogModal>
               <AlertDialogHeader>
                 <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
                 <AlertDialogDescription>
-                  This action cannot be undone. This will permanently delete your
-                  account and remove your data from our servers.
+                  This action cannot be undone. This will permanently delete
+                  your account and remove your data from our servers.
                 </AlertDialogDescription>
               </AlertDialogHeader>
               <AlertDialogFooter>
@@ -123,36 +307,57 @@ function App() {
 
       <Section>
         <SectionTitle id="badge">Badge</SectionTitle>
-        <SectionContent class='flex gap-2'>
-          <For each={["default", "secondary", "destructive", "outline"] satisfies Array<"default" | "secondary" | "destructive" | "outline">}>
-            {variant =>
-              <Badge variant={variant}>{variant}</Badge>
+        <SectionContent class="flex gap-2">
+          <For
+            each={
+              [
+                "default",
+                "secondary",
+                "destructive",
+                "outline",
+              ] satisfies Array<
+                "default" | "secondary" | "destructive" | "outline"
+              >
             }
+          >
+            {(variant) => <Badge variant={variant}>{variant}</Badge>}
           </For>
         </SectionContent>
       </Section>
 
       <Section>
         <SectionTitle id="breadcrumbs">Breadcrumbs</SectionTitle>
-        <SectionContent>
-          TODO
-        </SectionContent>
+        <SectionContent>TODO</SectionContent>
       </Section>
 
       <Section>
         <SectionTitle id="button">Button</SectionTitle>
-        <SectionContent class='flex flex-col gap-2'>
-          <For each={["sm", "default", "xs"] satisfies Array<"sm" | "default" | "xs">} >
-            {size =>
-              <div class='flex gap-2'>
-                <Button size={size}>Default</Button>
-                <Button size={size} variant="destructive">Destructive</Button>
-                <Button size={size} variant="outline">Outline</Button>
-                <Button size={size} variant="secondary">Secondary</Button>
-                <Button size={size} variant="ghost">Ghost</Button>
-                <Button size={size} variant="link">Link</Button>
-              </div>
+        <SectionContent class="flex flex-col gap-2">
+          <For
+            each={
+              ["sm", "default", "xs"] satisfies Array<"sm" | "default" | "xs">
             }
+          >
+            {(size) => (
+              <div class="flex gap-2">
+                <Button size={size}>Default</Button>
+                <Button size={size} variant="destructive">
+                  Destructive
+                </Button>
+                <Button size={size} variant="outline">
+                  Outline
+                </Button>
+                <Button size={size} variant="secondary">
+                  Secondary
+                </Button>
+                <Button size={size} variant="ghost">
+                  Ghost
+                </Button>
+                <Button size={size} variant="link">
+                  Link
+                </Button>
+              </div>
+            )}
           </For>
         </SectionContent>
       </Section>
@@ -165,9 +370,7 @@ function App() {
               <CardTitle>Card Title</CardTitle>
               <CardDescription>Card Description</CardDescription>
             </CardHeader>
-            <CardContent>
-              Card Content
-            </CardContent>
+            <CardContent>Card Content</CardContent>
             <CardFooter>Card Footer</CardFooter>
           </CardRoot>
         </SectionContent>
@@ -177,7 +380,7 @@ function App() {
         <SectionTitle id="checkbox">Checkbox</SectionTitle>
         <SectionContent>
           <CheckboxRoot validationState={validationState()} class="space-y-2">
-            <div class="flex gap-2 items-center">
+            <div class="flex items-center gap-2">
               <CheckboxControl />
               <CheckboxLabel>Checkbox Label</CheckboxLabel>
             </div>
@@ -192,9 +395,60 @@ function App() {
         <SectionContent>
           <ComboboxRoot<string>
             multiple
-            options={["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50",]}
+            options={[
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6",
+              "7",
+              "8",
+              "9",
+              "10",
+              "11",
+              "12",
+              "13",
+              "14",
+              "15",
+              "16",
+              "17",
+              "18",
+              "19",
+              "20",
+              "21",
+              "22",
+              "23",
+              "24",
+              "25",
+              "26",
+              "27",
+              "28",
+              "29",
+              "30",
+              "31",
+              "32",
+              "33",
+              "34",
+              "35",
+              "36",
+              "37",
+              "38",
+              "39",
+              "40",
+              "41",
+              "42",
+              "43",
+              "44",
+              "45",
+              "46",
+              "47",
+              "48",
+              "49",
+              "50",
+            ]}
             placeholder="Fruits"
-            itemComponent={props => (
+            itemComponent={(props) => (
               <ComboboxItem item={props.item}>
                 <ComboboxItemLabel>{props.item.rawValue}</ComboboxItemLabel>
               </ComboboxItem>
@@ -204,7 +458,7 @@ function App() {
           >
             <ComboboxLabel>Combobox Label</ComboboxLabel>
             <ComboboxControl<string> aria-label="Fruits">
-              {state => (
+              {(state) => (
                 <ComboboxTrigger>
                   <ComboboxIcon as={RiSystemAddLine} class="size-4" />
                   Fruits
@@ -215,7 +469,7 @@ function App() {
             </ComboboxControl>
             <ComboboxDescription>Combobox Description</ComboboxDescription>
             <ComboboxErrorMessage>Combobox Error Message</ComboboxErrorMessage>
-            <ComboboxContent >
+            <ComboboxContent>
               <ComboboxInput />
               <ComboboxListbox />
             </ComboboxContent>
@@ -227,26 +481,20 @@ function App() {
         <SectionTitle id="dialog">Dialog</SectionTitle>
         <SectionContent>
           <DialogRoot>
-            <DialogTrigger as={Button}>
-              Dialog
-            </DialogTrigger>
+            <DialogTrigger as={Button}>Dialog</DialogTrigger>
             <DialogPortal>
               <DialogOverlay />
               <DialogContent>
                 <DialogHeader>
                   <DialogTitle>Header Title</DialogTitle>
-                  <DialogDescription>
-                    Header Description
-                  </DialogDescription>
+                  <DialogDescription>Header Description</DialogDescription>
                 </DialogHeader>
                 <DialogOverflow>
                   <For each={Array(100)}>
                     {() => <div>I will overflow.</div>}
                   </For>
                 </DialogOverflow>
-                <DialogFooter>
-                  Footer
-                </DialogFooter>
+                <DialogFooter>Footer</DialogFooter>
               </DialogContent>
             </DialogPortal>
           </DialogRoot>
@@ -257,9 +505,7 @@ function App() {
         <SectionTitle id="dropdown-menu">Dropdown Menu</SectionTitle>
         <SectionContent>
           <DropdownMenuRoot>
-            <DropdownMenuTrigger as={Button}>
-              Dropdown Menu
-            </DropdownMenuTrigger>
+            <DropdownMenuTrigger as={Button}>Dropdown Menu</DropdownMenuTrigger>
             <DropdownMenuPortal>
               <DropdownMenuContent>
                 <DropdownMenuItem>
@@ -269,7 +515,8 @@ function App() {
                   Push <DropdownMenuShortcut>⇧+⌘+K</DropdownMenuShortcut>
                 </DropdownMenuItem>
                 <DropdownMenuItem disabled>
-                  Update Project <DropdownMenuShortcut>⌘+T</DropdownMenuShortcut>
+                  Update Project{" "}
+                  <DropdownMenuShortcut>⌘+T</DropdownMenuShortcut>
                 </DropdownMenuItem>
                 <DropdownMenuSub overlap gutter={4} shift={-8}>
                   <DropdownMenuSubTrigger>
@@ -278,19 +525,11 @@ function App() {
                   </DropdownMenuSubTrigger>
                   <DropdownMenuPortal>
                     <DropdownMenuSubContent>
-                      <DropdownMenuItem>
-                        Create Pull Request…
-                      </DropdownMenuItem>
-                      <DropdownMenuItem>
-                        View Pull Requests
-                      </DropdownMenuItem>
-                      <DropdownMenuItem>
-                        Sync Fork
-                      </DropdownMenuItem>
+                      <DropdownMenuItem>Create Pull Request…</DropdownMenuItem>
+                      <DropdownMenuItem>View Pull Requests</DropdownMenuItem>
+                      <DropdownMenuItem>Sync Fork</DropdownMenuItem>
                       <DropdownMenuSeparator />
-                      <DropdownMenuItem>
-                        Open on GitHub
-                      </DropdownMenuItem>
+                      <DropdownMenuItem>Open on GitHub</DropdownMenuItem>
                     </DropdownMenuSubContent>
                   </DropdownMenuPortal>
                 </DropdownMenuSub>
@@ -305,9 +544,7 @@ function App() {
                 </DropdownMenuCheckboxItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
-                  <DropdownMenuGroupLabel>
-                    Branches
-                  </DropdownMenuGroupLabel>
+                  <DropdownMenuGroupLabel>Branches</DropdownMenuGroupLabel>
                   <DropdownMenuRadioGroup>
                     <DropdownMenuRadioItem value="main">
                       <DropdownMenuRadioItemIndicator />
@@ -328,9 +565,7 @@ function App() {
 
       <Section>
         <SectionTitle id="form">Form</SectionTitle>
-        <SectionContent>
-          TODO
-        </SectionContent>
+        <SectionContent>TODO</SectionContent>
       </Section>
 
       <Section>
@@ -350,9 +585,7 @@ function App() {
 
       <Section>
         <SectionTitle id="input">Input</SectionTitle>
-        <SectionContent>
-          TODO
-        </SectionContent>
+        <SectionContent>TODO</SectionContent>
       </Section>
 
       <Section>
@@ -367,11 +600,9 @@ function App() {
         <SectionContent>
           <MenubarRoot>
             <MenubarMenu>
-              <MenubarTrigger>
-                Git
-              </MenubarTrigger>
+              <MenubarTrigger>Git</MenubarTrigger>
               <MenubarContent>
-                <MenubarItem >
+                <MenubarItem>
                   Commit <MenubarShortcut>⌘+K</MenubarShortcut>
                 </MenubarItem>
                 <MenubarItem>
@@ -381,51 +612,30 @@ function App() {
                   Update Project <MenubarShortcut>⌘+T</MenubarShortcut>
                 </MenubarItem>
                 <MenubarSub overlap gutter={4} shift={-8}>
-                  <MenubarSubTrigger>
-                    GitHub
-                  </MenubarSubTrigger>
+                  <MenubarSubTrigger>GitHub</MenubarSubTrigger>
                   <MenubarSubContent>
-                    <MenubarItem>
-                      Create Pull Request…
-                    </MenubarItem>
-                    <MenubarItem>
-                      View Pull Requests
-                    </MenubarItem>
+                    <MenubarItem>Create Pull Request…</MenubarItem>
+                    <MenubarItem>View Pull Requests</MenubarItem>
                     <MenubarItem>Sync Fork</MenubarItem>
                     <MenubarSeparator />
-                    <MenubarItem>
-                      Open on GitHub
-                    </MenubarItem>
+                    <MenubarItem>Open on GitHub</MenubarItem>
                   </MenubarSubContent>
                 </MenubarSub>
                 <MenubarSeparator />
-                <MenubarCheckboxItem
-                >
-                  Show Git Log
-                </MenubarCheckboxItem>
-                <MenubarCheckboxItem>
-                  Show History
-                </MenubarCheckboxItem>
+                <MenubarCheckboxItem>Show Git Log</MenubarCheckboxItem>
+                <MenubarCheckboxItem>Show History</MenubarCheckboxItem>
                 <MenubarSeparator />
                 <MenubarGroup>
-                  <MenubarGroupLabel>
-                    Branches
-                  </MenubarGroupLabel>
+                  <MenubarGroupLabel>Branches</MenubarGroupLabel>
                   <MenubarRadioGroup>
-                    <MenubarRadioItem value="main">
-                      main
-                    </MenubarRadioItem>
-                    <MenubarRadioItem value="develop">
-                      develop
-                    </MenubarRadioItem>
+                    <MenubarRadioItem value="main">main</MenubarRadioItem>
+                    <MenubarRadioItem value="develop">develop</MenubarRadioItem>
                   </MenubarRadioGroup>
                 </MenubarGroup>
               </MenubarContent>
             </MenubarMenu>
             <MenubarMenu>
-              <MenubarTrigger>
-                File
-              </MenubarTrigger>
+              <MenubarTrigger>File</MenubarTrigger>
               <MenubarContent>
                 <MenubarItem>
                   New Tab <MenubarShortcut>⌘+T</MenubarShortcut>
@@ -433,24 +643,14 @@ function App() {
                 <MenubarItem>
                   New Window <MenubarShortcut>⌘+N</MenubarShortcut>
                 </MenubarItem>
-                <MenubarItem disabled>
-                  New Incognito Window
-                </MenubarItem>
+                <MenubarItem disabled>New Incognito Window</MenubarItem>
                 <MenubarSeparator />
                 <MenubarSub overlap gutter={4} shift={-8}>
-                  <MenubarSubTrigger>
-                    Share
-                  </MenubarSubTrigger>
+                  <MenubarSubTrigger>Share</MenubarSubTrigger>
                   <MenubarSubContent>
-                    <MenubarItem>
-                      Email Link
-                    </MenubarItem>
-                    <MenubarItem>
-                      Messages
-                    </MenubarItem>
-                    <MenubarItem>
-                      Notes
-                    </MenubarItem>
+                    <MenubarItem>Email Link</MenubarItem>
+                    <MenubarItem>Messages</MenubarItem>
+                    <MenubarItem>Notes</MenubarItem>
                   </MenubarSubContent>
                 </MenubarSub>
                 <MenubarSeparator />
@@ -460,9 +660,7 @@ function App() {
               </MenubarContent>
             </MenubarMenu>
             <MenubarMenu>
-              <MenubarTrigger>
-                Edit
-              </MenubarTrigger>
+              <MenubarTrigger>Edit</MenubarTrigger>
               <MenubarContent>
                 <MenubarItem>
                   Undo <MenubarShortcut>⌘+Z</MenubarShortcut>
@@ -472,35 +670,19 @@ function App() {
                 </MenubarItem>
                 <MenubarSeparator />
                 <MenubarSub overlap gutter={4} shift={-8}>
-                  <MenubarSubTrigger>
-                    Find
-                  </MenubarSubTrigger>
+                  <MenubarSubTrigger>Find</MenubarSubTrigger>
                   <MenubarSubContent>
-                    <MenubarItem>
-                      Search The Web
-                    </MenubarItem>
+                    <MenubarItem>Search The Web</MenubarItem>
                     <MenubarSeparator />
-                    <MenubarItem>
-                      Find...
-                    </MenubarItem>
-                    <MenubarItem>
-                      Find Next
-                    </MenubarItem>
-                    <MenubarItem>
-                      Find Previous
-                    </MenubarItem>
+                    <MenubarItem>Find...</MenubarItem>
+                    <MenubarItem>Find Next</MenubarItem>
+                    <MenubarItem>Find Previous</MenubarItem>
                   </MenubarSubContent>
                 </MenubarSub>
                 <MenubarSeparator />
-                <MenubarItem>
-                  Cut
-                </MenubarItem>
-                <MenubarItem>
-                  Copy
-                </MenubarItem>
-                <MenubarItem>
-                  Paste
-                </MenubarItem>
+                <MenubarItem>Cut</MenubarItem>
+                <MenubarItem>Copy</MenubarItem>
+                <MenubarItem>Paste</MenubarItem>
               </MenubarContent>
             </MenubarMenu>
           </MenubarRoot>
@@ -509,9 +691,7 @@ function App() {
 
       <Section>
         <SectionTitle id="Navigation-menu">Navigation Menu</SectionTitle>
-        <SectionContent>
-          TODO
-        </SectionContent>
+        <SectionContent>TODO</SectionContent>
       </Section>
 
       <Section>
@@ -519,16 +699,12 @@ function App() {
         <SectionContent>
           <PaginationRoot
             count={10}
-            itemComponent={props => (
+            itemComponent={(props) => (
               <PaginationItem page={props.page}>
-                <PaginationLink>
-                  {props.page}
-                </PaginationLink>
+                <PaginationLink>{props.page}</PaginationLink>
               </PaginationItem>
             )}
-            ellipsisComponent={() => (
-              <PaginationEllipsis />
-            )}
+            ellipsisComponent={() => <PaginationEllipsis />}
           >
             <PaginationPrevious />
             <PaginationItems />
@@ -539,20 +715,16 @@ function App() {
 
       <Section>
         <SectionTitle id="popover">Popover</SectionTitle>
-        <SectionContent>
-          TODO
-        </SectionContent>
+        <SectionContent>TODO</SectionContent>
       </Section>
 
       <Section>
         <SectionTitle id="progress">Progress</SectionTitle>
         <SectionContent>
-          <ProgressRoot value={progress()} class='space-y-2'>
+          <ProgressRoot value={progress()} class="space-y-2">
             <div class="flex justify-between">
               <ProgressLabel>Loading</ProgressLabel>
-              <ProgressValueLabel>
-                {progress()}%
-              </ProgressValueLabel>
+              <ProgressValueLabel>{progress()}%</ProgressValueLabel>
             </div>
             <ProgressTrack>
               <ProgressFill />
@@ -566,12 +738,50 @@ function App() {
         <SectionContent>
           <SelectRoot
             defaultValue="Apple"
-            options={["Apple", "Banana", "Blueberry", "Grapes", "Pineapple", "Apple", "Apple", "Apple", "Apple", "Apple", "Apple", "Apple", "Apple", "Apple", "Apple", "Apple", "Apple", "Apple", "Apple", "Apple", "Apple", "Apple", "Apple", "Apple", "Apple", "Apple", "Apple", "Apple", "Apple", "Apple", "Apple", "Apple", "Apple", "Apple", "Apple", "Apple", "Apple", "Apple", "Apple",]}
+            options={[
+              "Apple",
+              "Banana",
+              "Blueberry",
+              "Grapes",
+              "Pineapple",
+              "Apple",
+              "Apple",
+              "Apple",
+              "Apple",
+              "Apple",
+              "Apple",
+              "Apple",
+              "Apple",
+              "Apple",
+              "Apple",
+              "Apple",
+              "Apple",
+              "Apple",
+              "Apple",
+              "Apple",
+              "Apple",
+              "Apple",
+              "Apple",
+              "Apple",
+              "Apple",
+              "Apple",
+              "Apple",
+              "Apple",
+              "Apple",
+              "Apple",
+              "Apple",
+              "Apple",
+              "Apple",
+              "Apple",
+              "Apple",
+              "Apple",
+              "Apple",
+              "Apple",
+              "Apple",
+            ]}
             placeholder="Select a fruit…"
-            itemComponent={props => (
-              <SelectItem item={props.item}>
-                {props.item.rawValue}
-              </SelectItem>
+            itemComponent={(props) => (
+              <SelectItem item={props.item}>{props.item.rawValue}</SelectItem>
             )}
             class="space-y-2"
             validationState={validationState()}
@@ -579,7 +789,7 @@ function App() {
             <SelectLabel>Select Label</SelectLabel>
             <SelectTrigger aria-label="Fruit">
               <SelectValue<string>>
-                {state => state.selectedOption()}
+                {(state) => state.selectedOption()}
               </SelectValue>
             </SelectTrigger>
             <SelectDescription>Select Description</SelectDescription>
@@ -613,25 +823,20 @@ function App() {
         <SectionTitle id="sheet">Sheet</SectionTitle>
         <SectionContent>
           <SheetRoot>
-            <SheetTrigger as={Button}>
-              Sheet
-            </SheetTrigger>
+            <SheetTrigger as={Button}>Sheet</SheetTrigger>
             <SheetContent>
               <SheetHeader>
                 <SheetTitle>Edit profile</SheetTitle>
                 <SheetDescription>
-                  Make changes to your profile here. Click save when you're done.
+                  Make changes to your profile here. Click save when you're
+                  done.
                 </SheetDescription>
               </SheetHeader>
               <SheetOverflow>
-                <For each={Array(100)}>
-                  {() => <div>I will overflow.</div>}
-                </For>
+                <For each={Array(100)}>{() => <div>I will overflow.</div>}</For>
               </SheetOverflow>
               <SheetFooter>
-                <SheetCloseButton as={Button}>
-                  Save changes
-                </SheetCloseButton>
+                <SheetCloseButton as={Button}>Save changes</SheetCloseButton>
               </SheetFooter>
             </SheetContent>
           </SheetRoot>
@@ -717,7 +922,9 @@ function App() {
             <TextFieldLabel>Text Field Label</TextFieldLabel>
             <TextFieldInput placeholder="Text Field Input" />
             <TextFieldDescription>Text Field Description</TextFieldDescription>
-            <TextFieldErrorMessage>Text Field Error Message</TextFieldErrorMessage>
+            <TextFieldErrorMessage>
+              Text Field Error Message
+            </TextFieldErrorMessage>
           </TextFieldRoot>
         </SectionContent>
       </Section>
@@ -729,7 +936,9 @@ function App() {
             <TextFieldLabel>Text Field Label</TextFieldLabel>
             <TextFieldTextArea placeholder="Text Field Text Area" />
             <TextFieldDescription>Text Field Description</TextFieldDescription>
-            <TextFieldErrorMessage>Text Field Error Message</TextFieldErrorMessage>
+            <TextFieldErrorMessage>
+              Text Field Error Message
+            </TextFieldErrorMessage>
           </TextFieldRoot>
         </SectionContent>
       </Section>
@@ -745,13 +954,13 @@ function App() {
         <SectionTitle id="toast">Toast</SectionTitle>
         <SectionContent>
           <Portal>
-            <ToastRegion >
+            <ToastRegion>
               <ToastList />
             </ToastRegion>
           </Portal>
-          <Button onClick={
-            () =>
-              toast.custom(() =>
+          <Button
+            onClick={() =>
+              toast.custom(() => (
                 <ToastContent>
                   <ToastCloseButton />
                   <ToastTitle>Title</ToastTitle>
@@ -760,8 +969,11 @@ function App() {
                     <ToastProgressFill />
                   </ToastProgressTrack>
                 </ToastContent>
-              )
-          }>Toast</Button>
+              ))
+            }
+          >
+            Toast
+          </Button>
         </SectionContent>
       </Section>
 
@@ -769,8 +981,11 @@ function App() {
         <SectionTitle id="toggle">Toggle</SectionTitle>
         <SectionContent>
           <Toggle>
-            {state => (
-              <Show when={state.pressed()} fallback={<RiMediaVolumeUpLine class="size-6" />}>
+            {(state) => (
+              <Show
+                when={state.pressed()}
+                fallback={<RiMediaVolumeUpLine class="size-6" />}
+              >
                 <RiMediaVolumeMuteLine class="size-6" />
               </Show>
             )}
@@ -790,38 +1005,30 @@ function App() {
           </TooltipRoot>
         </SectionContent>
       </Section>
-
     </div>
-  )
+  );
 }
 
-
 function Section(props: ParentProps) {
-  return (
-    <div class='flex flex-col gap-2'>
-      {props.children}
-    </div>
-  )
+  return <div class="flex flex-col gap-2">{props.children}</div>;
 }
 
 function SectionTitle(props: ParentProps & { id: string }) {
   return (
-    <h2 id={props.id} class='flex-1 p-2 text-lg rounded shadow bg-secondary text-secondary-foreground'>
-      <a href={`#${props.id}`} class='flex items-center hover:underline'>
-        <RiEditorHashtag class='size-5' />
+    <h2
+      id={props.id}
+      class="flex-1 rounded bg-secondary p-2 text-lg text-secondary-foreground shadow"
+    >
+      <a href={`#${props.id}`} class="flex items-center hover:underline">
+        <RiEditorHashtag class="size-5" />
         {props.children}
       </a>
     </h2>
-  )
+  );
 }
 
 function SectionContent(props: ParentProps & { class?: string }) {
-  return (
-    <div class={props.class}>
-      {props.children}
-    </div>
-  )
+  return <div class={props.class}>{props.children}</div>;
 }
 
-
-export default App
+export default App;
