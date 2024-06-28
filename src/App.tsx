@@ -508,6 +508,13 @@ function App() {
       </Section>
 
       <Section>
+        <SectionTitle id="Navigation-menu">Navigation Menu</SectionTitle>
+        <SectionContent>
+          TODO
+        </SectionContent>
+      </Section>
+
+      <Section>
         <SectionTitle id="pagination">Pagination</SectionTitle>
         <SectionContent>
           <PaginationRoot
@@ -540,7 +547,7 @@ function App() {
       <Section>
         <SectionTitle id="progress">Progress</SectionTitle>
         <SectionContent>
-          <ProgressRoot value={progress()}>
+          <ProgressRoot value={progress()} class='space-y-2'>
             <div class="flex justify-between">
               <ProgressLabel>Loading</ProgressLabel>
               <ProgressValueLabel>
@@ -609,7 +616,7 @@ function App() {
             <SheetTrigger as={Button}>
               Sheet
             </SheetTrigger>
-            <SheetContent class="p-4 sm:p-6">
+            <SheetContent>
               <SheetHeader>
                 <SheetTitle>Edit profile</SheetTitle>
                 <SheetDescription>
@@ -784,7 +791,7 @@ function App() {
         </SectionContent>
       </Section>
 
-    </div >
+    </div>
   )
 }
 

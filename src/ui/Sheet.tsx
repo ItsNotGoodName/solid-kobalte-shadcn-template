@@ -28,7 +28,7 @@ export function SheetOverlay(props: ComponentProps<typeof Dialog.Overlay>) {
 }
 
 const sheetContentVariants = cva(
-  "bg-background ui-expanded:animate-in ui-not-expanded:animate-out ui-not-expanded:duration-300 ui-expanded:duration-500 fixed z-50 flex flex-col gap-2 shadow-lg transition ease-in-out",
+  "bg-background ui-expanded:animate-in ui-not-expanded:animate-out ui-not-expanded:duration-300 ui-expanded:duration-500 fixed z-50 flex flex-col gap-2 shadow-lg transition p-4 ease-in-out sm:p-6",
   {
     variants: {
       side: {
