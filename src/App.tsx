@@ -204,6 +204,13 @@ import {
   TooltipRoot,
   TooltipTrigger,
 } from "./ui/Tooltip";
+import {
+  NumberFieldDescription,
+  NumberFieldErrorMessage,
+  NumberFieldInput,
+  NumberFieldLabel,
+  NumberFieldRoot,
+} from "./ui/NumberField";
 
 function App() {
   provideTheme();
@@ -690,8 +697,23 @@ function App() {
       </Section>
 
       <Section>
-        <SectionTitle id="Navigation-menu">Navigation Menu</SectionTitle>
+        <SectionTitle id="navigation-menu">Navigation Menu</SectionTitle>
         <SectionContent>TODO</SectionContent>
+      </Section>
+
+      <Section>
+        <SectionTitle id="number-field">Number Field</SectionTitle>
+        <SectionContent>
+          <NumberFieldRoot>
+            <NumberFieldLabel />
+            <NumberFieldInput />
+            {/* <NumberFieldHiddenInput /> */}
+            {/* <NumberFieldIncrementTrigger /> */}
+            {/* <NumberFieldDecrementTrigger /> */}
+            <NumberFieldDescription />
+            <NumberFieldErrorMessage />
+          </NumberFieldRoot>
+        </SectionContent>
       </Section>
 
       <Section>
