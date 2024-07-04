@@ -1,5 +1,5 @@
 // # Changes
-// N/A
+// - More table cells and head types
 //
 // # URLs
 // https://ui.shadcn.com/docs/components/table
@@ -74,6 +74,36 @@ export function TableHead(props: JSX.ThHTMLAttributes<HTMLTableCellElement>) {
   );
 }
 
+export function TableHeadBase(
+  props: JSX.ThHTMLAttributes<HTMLTableCellElement>,
+) {
+  const [_, rest] = splitProps(props, ["class"]);
+  return (
+    <th
+      class={cn(
+        "h-12 align-middle font-medium text-muted-foreground",
+        props.class,
+      )}
+      {...rest}
+    />
+  );
+}
+
+export function TableHeadEnd(
+  props: JSX.ThHTMLAttributes<HTMLTableCellElement>,
+) {
+  const [_, rest] = splitProps(props, ["class"]);
+  return (
+    <th
+      class={cn(
+        "h-12 px-4 text-right align-middle font-medium text-muted-foreground",
+        props.class,
+      )}
+      {...rest}
+    />
+  );
+}
+
 export function TableCell(props: JSX.TdHTMLAttributes<HTMLTableCellElement>) {
   const [_, rest] = splitProps(props, ["class"]);
   return (
@@ -81,6 +111,15 @@ export function TableCell(props: JSX.TdHTMLAttributes<HTMLTableCellElement>) {
       class={cn("p-4 align-middle [&:has([role=checkbox])]:pr-0", props.class)}
       {...rest}
     />
+  );
+}
+
+export function TableCellEnd(
+  props: JSX.TdHTMLAttributes<HTMLTableCellElement>,
+) {
+  const [_, rest] = splitProps(props, ["class"]);
+  return (
+    <td class={cn("px-4 text-right align-middle", props.class)} {...rest} />
   );
 }
 
